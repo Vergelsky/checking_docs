@@ -7,7 +7,13 @@ POSTGRES_PASSWORD =
 POSTGRES_HOST = 'db'
 POSTGRES_PORT = '5432'
 
+EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = '465'
+EMAIL_HOST_USER = 'youemail@mail.ru'
+EMAIL_HOST_PASSWORD = 'sfdkwenne&fvb22ksjhd'
 
+DEFAULT_MODERATOR_EMAIL = 'moder@yahoo.com'
 
 CELERY_BROKER_URL = 'redis://redis:6379/0'
 CELERY_RESULT_BACKEND = 'redis://redis:6379/0'

@@ -65,7 +65,6 @@ class DocumentTestCase(APITestCase):
 
     def test_delete_document(self):
         """ Тестируем удаление документа """
-        print(self.document.pk, '< self.document.pk')
         self.client.force_authenticate(user=self.user)
         response = self.client.delete(reverse('doc_checker:doc-check-detail', args=[self.document.pk]))
         self.assertEqual(
