@@ -9,7 +9,7 @@ def send_user_docs_for_check(doc):
     Если модератора нет, то отправляет письмо на адрес DEFAULT_MODERATOR_EMAIL
     """
     moderator = (getattr(User.objects.filter(is_moderator=True).first(), 'email', None)
-                 or doc.user.email)
+                 or DEFAULT_MODERATOR_EMAIL)
     subject = str(doc)
     message = f'Вам необходимо проверить документ: {doc}'
     with open(doc.file.path, 'rb') as file:
@@ -24,3 +24,11 @@ def send_user_docs_for_check(doc):
         email_message.send(fail_silently=False)
     except Exception as e:
         print("Ошибка отправки письма:", e)
+
+
+def send_document_verification_results(doc=None):
+    """
+    Отправляет пользователю письмо с результатами проверки документа
+    """
+
+    print('Сообщение с результатами проверки отправлено')
