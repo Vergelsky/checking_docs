@@ -1,6 +1,7 @@
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage, send_mail
+
 from users.models import User
-from config.settings import DEFAULT_MODERATOR_EMAIL
+from config.settings import DEFAULT_MODERATOR_EMAIL, EMAIL_HOST_USER
 
 
 def send_user_docs_for_check(doc):
@@ -26,9 +27,24 @@ def send_user_docs_for_check(doc):
         print("Ошибка отправки письма:", e)
 
 
-def send_document_verification_results(doc=None):
+def send_document_verification_results(email, result):
     """
     Отправляет пользователю письмо с результатами проверки документа
     """
-
-    print('Сообщение с результатами проверки отправлено')
+    match result:
+        case '2_rej':
+            subject = 'Ваш документ был отклонен'
+            message = 'Ваш документ был отклонен. Проверьте документ и попробуйте ещё раз.'
+        case '3_conf':
+            subject = 'Ваш документ был принят'
+            message = 'Поздравляем! Ваш документ прошёл проверку и был принят.'
+    try:
+        send_mail(
+            subject=subject,
+            message=message,
+            from_email=EMAIL_HOST_USER,
+            recipient_list=[email],
+            fail_silently=False
+        )
+    except Exception as e:
+        print("Ошибка отправки письма:", e)
