@@ -1,2 +1,8 @@
 # checking_docs
-Simple microservice for check docs and activate users.
+Простой сервис для ручной проверки предоставляемых документов
+
+Порядок установки:
+ 
+
+ docker exec -it  checking_docs-app-1 python3 manage.py csu
+

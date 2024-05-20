@@ -43,7 +43,7 @@ class DocumentTestCase(APITestCase):
     def test_read_document(self):
         """ Тестируем чтение одного документа """
 
-        self.client.force_authenticate(user=self.simple_user)
+        self.client.force_authenticate(user=self.user)
         response = self.client.get(reverse('doc_checker:doc-check-list'), args=[self.document.pk])
         self.assertEqual(
             response.status_code,
@@ -57,6 +57,7 @@ class DocumentTestCase(APITestCase):
         with open(self.file, 'rb') as file:
             response = self.client.patch(reverse('doc_checker:doc-check-detail', args=[self.document.pk]),
                                          data={'file': file})
+            print(response.data)
         self.assertEqual(
             response.status_code,
             status.HTTP_200_OK
