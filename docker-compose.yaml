@@ -27,7 +27,8 @@ services:
   app:
     build: .
     tty: True
-    command: sh -c 'python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8000 && python3 manage.py csu'
+    command:
+      - sh -c 'python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8000 && python3 manage.py csu'
     ports:
       - '8000:8000'
     depends_on:
