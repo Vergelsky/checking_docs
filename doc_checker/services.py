@@ -1,14 +1,16 @@
 from django.core.mail import EmailMessage, send_mail
 
+from doc_checker.models import Document
 from users.models import User
 from config.settings import DEFAULT_MODERATOR_EMAIL, EMAIL_HOST_USER
 
 
-def send_user_docs_for_check(doc):
+def send_user_docs_for_check(doc_pk):
     """
     Отправляет письмо с документом модератору
     Если модератора нет, то отправляет письмо на адрес DEFAULT_MODERATOR_EMAIL
     """
+    doc = Document.objects.filter(pk=doc_pk)
     moderator = (getattr(User.objects.filter(is_moderator=True).first(), 'email', None) or DEFAULT_MODERATOR_EMAIL)
     subject = str(doc)
     message = f'Вам необходимо проверить документ: {doc}'

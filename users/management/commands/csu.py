@@ -3,13 +3,14 @@ from users.models import User
 
 
 class Command(BaseCommand):
+    su_email = 'first_admin@sky.pro'
 
     def handle(self, *args, **options):
-        user = User.objects.create(
-            email='first_admin@sky.pro',
-            is_staff=True,
-            is_superuser=True,
-        )
-
-        user.set_password('1qaz2wsx')
-        user.save()
+        if not User.objects.filter(email=self.su_email).exists():
+            user = User.objects.create(
+                email=self.su_email,
+                is_staff=True,
+                is_superuser=True,
+            )
+            user.set_password('1qaz2wsx')
+            user.save()
