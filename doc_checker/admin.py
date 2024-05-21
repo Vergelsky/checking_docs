@@ -26,4 +26,3 @@ class DocumentAdmin(admin.ModelAdmin):
     @admin.action(description='Отметить как новое')
     def mark_as_new(self, request, queryset):
         queryset.update(status='1_new')
-

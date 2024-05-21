@@ -9,8 +9,7 @@ def send_user_docs_for_check(doc):
     Отправляет письмо с документом модератору
     Если модератора нет, то отправляет письмо на адрес DEFAULT_MODERATOR_EMAIL
     """
-    moderator = (getattr(User.objects.filter(is_moderator=True).first(), 'email', None)
-                 or DEFAULT_MODERATOR_EMAIL)
+    moderator = (getattr(User.objects.filter(is_moderator=True).first(), 'email', None) or DEFAULT_MODERATOR_EMAIL)
     subject = str(doc)
     message = f'Вам необходимо проверить документ: {doc}'
     with open(doc.file.path, 'rb') as file:

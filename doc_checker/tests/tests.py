@@ -1,4 +1,3 @@
-from django.test import TestCase
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
@@ -13,9 +12,9 @@ class DocumentTestCase(APITestCase):
         self.file = 'doc_checker/tests/test_file.pdf'
         self.user = User.objects.create(email='testuser@mail.com')
         self.document = Document.objects.create(
-                file=self.file,
-                user=self.user
-            )
+            file=self.file,
+            user=self.user
+        )
 
     def test_create_document(self):
         """Тестируем создание документа"""
@@ -62,7 +61,6 @@ class DocumentTestCase(APITestCase):
             response.status_code,
             status.HTTP_200_OK
         )
-
 
     def test_delete_document(self):
         """ Тестируем удаление документа """
