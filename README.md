@@ -16,4 +16,30 @@ copy env_expample .env<br>
 - запускаем докер:<br>
 docker-compose up --build
 
-
+## Использование сервиса <br>
+- CRUD пользователей:
+  - создание: POST /users/<br>
+    {<br>
+    "email": "test@gmail.com",<br>
+    "is_moderator": true, # необязательный<br> 
+    "password": "test"<br>
+    }
+  - список: GET /users/<br>
+  - один: POST /users/1/<br>
+  - изменение: PATCH /users/1/<br>
+  - удаление: DELETE /users/1/<br>- CRUD пользователей:
+  - создание: POST /users/<br>
+    {<br>
+    "email": "test@gmail.com",<br>
+    "is_moderator": true, # необязательный<br> 
+    "password": "test"<br>
+    }
+  - список: GET /users/<br>
+  - один: POST /users/1/<br>
+  - изменение: PATCH /users/1/<br>
+  - удаление: DELETE /users/1/<br>
+    {<br>
+    "email": "test@gmail.com",<br>
+    "is_moderator": true, # необязательный<br> 
+    "password": "test"<br>
+    }
