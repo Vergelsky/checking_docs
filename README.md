@@ -8,6 +8,8 @@ git clone https://github.com/Vergelsky/checking_docs.git<br>
 
 - создаём виртуальное окружение:<br>
 python -m venv .venv
+- активируем его:<br>
+  .venv/Scripts/activate
 - устанавливаем зависимости:<br>
 pip install -r requirements.txt
 - из файла env_example создаём файл с переменными окружения .env:<br>
