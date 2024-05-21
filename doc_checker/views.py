@@ -11,6 +11,5 @@ class DocumentViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
-
         send_user_docs_for_check(serializer.instance)
         return serializer

@@ -27,19 +27,13 @@ docker-compose up --build
   - список: GET /users/<br>
   - один: POST /users/1/<br>
   - изменение: PATCH /users/1/<br>
-  - удаление: DELETE /users/1/<br>- CRUD пользователей:
-  - создание: POST /users/<br>
-    {<br>
-    "email": "test@gmail.com",<br>
-    "is_moderator": true, # необязательный<br> 
-    "password": "test"<br>
-    }
-  - список: GET /users/<br>
-  - один: POST /users/1/<br>
-  - изменение: PATCH /users/1/<br>
   - удаление: DELETE /users/1/<br>
-    {<br>
-    "email": "test@gmail.com",<br>
-    "is_moderator": true, # необязательный<br> 
-    "password": "test"<br>
-    }
+- CRUD документов:
+  - создание: POST /doc-check/  # через form-data<br> 
+  - список: GET /doc-check/<br>
+  - один: POST /doc-check/1/<br>
+  - изменение: PATCH /doc-check/1/<br>
+  - удаление: DELETE /doc-check/1/<br>
+
+В момент создания документа первому попавшемуся пользователю с полем is_moderator=True
+отправляется письмо. Если такого нет, письмо уходит на почту указанную в переменной 

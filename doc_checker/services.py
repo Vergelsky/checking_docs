@@ -13,7 +13,7 @@ def send_user_docs_for_check(doc):
     doc_path = doc.file.path
     moderator = (getattr(User.objects.filter(is_moderator=True).first(), 'email', None) or DEFAULT_MODERATOR_EMAIL)
     subject = doc_name
-    message = f'Вам необходимо проверить документ: doc_name'
+    message = f'Вам необходимо проверить документ: {doc_name}'
     with open(doc_path, 'rb') as file:
         sending_file = file.read()
     email_message = EmailMessage(
