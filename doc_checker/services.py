@@ -5,22 +5,23 @@ from users.models import User
 from config.settings import DEFAULT_MODERATOR_EMAIL, EMAIL_HOST_USER
 
 
-def send_user_docs_for_check(doc_pk):
+def send_user_docs_for_check(doc_name, doc_path):
     """
     Отправляет письмо с документом модератору
     Если модератора нет, то отправляет письмо на адрес DEFAULT_MODERATOR_EMAIL
     """
-    doc = Document.objects.filter(pk=doc_pk)
+    doc_name = doc_name
+    doc_path = doc_path
     moderator = (getattr(User.objects.filter(is_moderator=True).first(), 'email', None) or DEFAULT_MODERATOR_EMAIL)
-    subject = str(doc)
-    message = f'Вам необходимо проверить документ: {doc}'
-    with open(doc.file.path, 'rb') as file:
+    subject = doc_name
+    message = f'Вам необходимо проверить документ: doc_name'
+    with open(doc_path, 'rb') as file:
         sending_file = file.read()
     email_message = EmailMessage(
         subject=subject,
         body=message,
         to=[moderator],
-        attachments=[(doc.file.path, sending_file)]
+        attachments=[(doc_path, sending_file)]
     )
     try:
         email_message.send(fail_silently=False)

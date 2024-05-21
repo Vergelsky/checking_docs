@@ -8,5 +8,5 @@ def task_send_document_verification_results(email, result):
 
 
 @shared_task
-def task_send_user_docs_for_check(doc_pk):
-    send_user_docs_for_check(doc_pk)
+def task_send_user_docs_for_check(doc_name, doc_path):
+    send_user_docs_for_check(doc_name, doc_path)

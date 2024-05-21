@@ -11,5 +11,6 @@ class DocumentViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
-        task_send_user_docs_for_check.delay(serializer.instance.pk)
+        doc = serializer.instance
+        task_send_user_docs_for_check.delay(str(doc), doc.file.path)
         return serializer
