@@ -16,6 +16,9 @@ copy env_expample .env<br>
 - запускаем докер:<br>
 docker-compose up --build
 
+В системе автоматически создаётся суперпользователь first_admin@sky.pro
+с паролем 1qaz2wsx.
+
 ## Использование сервиса <br>
 - CRUD пользователей:
   - создание: POST /users/<br>
