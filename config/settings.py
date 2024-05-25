@@ -153,3 +153,9 @@ CELERY_TIMEZONE = TIME_ZONE
 CELERY_TASK_TRACK_STARTED = True
 # Максимальное время на выполнение задачи
 CELERY_TASK_TIME_LIMIT = 30 * 60
+
+REST_FRAMEWORK = {
+  "DEFAULT_PERMISSION_CLASSES": [
+    "doc_checker.permissions.DocumentModelPermissions",
+  ]
+}
