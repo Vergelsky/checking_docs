@@ -46,7 +46,8 @@ class UserTestCase(APITestCase):
         """ Тестируем обновление пользователя"""
 
         self.client.force_authenticate(user=self.user)
-        response = self.client.patch(reverse('users:user-detail', args=[self.user.pk]), data=self.upd_data)
+        response = self.client.patch(reverse('users:user-detail',
+                                             args=[self.user.pk]), data=self.upd_data)
         self.assertEqual(
             response.status_code,
             status.HTTP_200_OK
@@ -56,7 +57,8 @@ class UserTestCase(APITestCase):
         """ Тестируем удаление пользователя """
 
         self.client.force_authenticate(user=self.user)
-        response = self.client.delete(reverse('users:user-detail', args=[self.user.pk]))
+        response = self.client.delete(reverse('users:user-detail',
+                                              args=[self.user.pk]))
         self.assertEqual(
             response.status_code,
             status.HTTP_204_NO_CONTENT

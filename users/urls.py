@@ -28,5 +28,5 @@ router = DefaultRouter()
 router.register(r'', UserViewSet, basename='user')
 
 urlpatterns = [
-                  path('admin/', admin.site.urls),
-              ] + router.urls
+                path('admin/', admin.site.urls),
+] + router.urls

@@ -29,4 +29,4 @@ router.register(r'', DocumentViewSet, basename='doc-check')
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
-              ] + router.urls
+] + router.urls
