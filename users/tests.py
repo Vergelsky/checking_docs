@@ -2,6 +2,7 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 from users.models import User
+from users.services import get_moder_perms
 
 
 class UserTestCase(APITestCase):
@@ -10,6 +11,9 @@ class UserTestCase(APITestCase):
             email="test@test.tst",
             password="testpassword"
         )
+        self.user.user_permissions.set(get_moder_perms())
+        self.user.is_superuser = True
+        self.client.force_authenticate(user=self.user)
         self.data = {
             "email": "test1@test.tst",
             "password": "testpassword"
