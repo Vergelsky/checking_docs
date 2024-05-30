@@ -12,7 +12,7 @@ class UserTestCase(APITestCase):
             password="testpassword"
         )
         self.user.user_permissions.set(get_moder_perms())
-        self.user.is_superuser = True
+        self.user.is_moderator = True
         self.client.force_authenticate(user=self.user)
         self.data = {
             "email": "test1@test.tst",

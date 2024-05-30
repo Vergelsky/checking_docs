@@ -1,10 +1,10 @@
 from rest_framework import serializers
 
 from users.models import User
-from users.services import get_moder_perms
 
 
 class UserSerializer(serializers.ModelSerializer):
+    is_moderator = serializers.HiddenField(default=False)
     """
     Сериализатор для модели User.
     Создаёт пользователя,
@@ -21,9 +21,5 @@ class UserSerializer(serializers.ModelSerializer):
         password = validated_data.pop('password')
         user = User.objects.create(**validated_data)
         user.set_password(password)
-        if user.is_moderator:
-            user.is_staff = True
-            permissions = get_moder_perms()
-            user.user_permissions.set(permissions)
         user.save()
         return user

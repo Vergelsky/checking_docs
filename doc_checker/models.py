@@ -22,7 +22,7 @@ class Document(models.Model):
         То отправляем результат верификации пользователю
         """
         if self.pk:
-            task_send_document_verification_results.delay(self.user.email, self.status)
+            task_send_document_verification_results.delay(str(self.user), self.status)
         super().save(*args, **kwargs)
 
     class Meta:

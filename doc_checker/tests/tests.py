@@ -12,7 +12,7 @@ class DocumentTestCase(APITestCase):
     def setUp(self):
         self.file = 'doc_checker/tests/test_file.pdf'
         self.user = User.objects.create(email='testuser@mail.com')
-        self.user.user_permissions.set(get_moder_perms())
+        self.user.is_moderator = True
         self.client.force_authenticate(user=self.user)
         self.document = Document.objects.create(
             file=self.file,
