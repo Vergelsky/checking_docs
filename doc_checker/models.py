@@ -21,6 +21,7 @@ class Document(models.Model):
         Если статус изменился не на 1_new,
         То отправляем результат верификации пользователю
         """
+
         if self.pk:
             task_send_document_verification_results.delay(str(self.user), self.status)
         super().save(*args, **kwargs)

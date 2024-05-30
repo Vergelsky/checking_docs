@@ -40,6 +40,7 @@ def send_document_verification_results(email, result):
             subject = 'Ваш документ был принят'
             message = 'Поздравляем! Ваш документ прошёл проверку и был принят.'
     try:
+        print(email)
         send_mail(
             subject=subject,
             message=message,
